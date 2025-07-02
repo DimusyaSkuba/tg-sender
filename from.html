@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Отправка сообщения в Telegram</title>
+</head>
+<body>
+    <h2>Сообщение в Telegram</h2>
+    <input type="text" id="text" placeholder="Введите текст" />
+    <button onclick="send()">Отправить</button>
+
+    <script>
+        const ENDPOINT = " https://dc69-138-199-53-248.ngrok-free.app/send"; // ← замени на свой из ngrok
+
+        function send() {
+            const text = document.getElementById("text").value;
+            fetch(ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: text })
+            }).then(() => alert("Отправлено!"))
+              .catch(() => alert("Ошибка отправки"));
+        }
+    </script>
+</body>
+</html>
+
